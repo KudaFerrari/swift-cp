@@ -10,8 +10,5 @@ let package = Package(
         .executableTarget(name: "312a"),
         .executableTarget(name: "312b"),
         .executableTarget(name: "312c"),
-        .executableTarget(name: "C"),
-        .executableTarget(name: "exampleTarget"),
-        .executableTarget(name: "exampleTargetB"),
     ]
 )
