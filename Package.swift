@@ -10,5 +10,9 @@ let package = Package(
         .executableTarget(name: "312a"),
         .executableTarget(name: "312b"),
         .executableTarget(name: "312c"),
+        .executableTarget(name: "lc25"),
+        .executableTarget(name: "lc30"),
+        .testTarget(name: "lc25Test", dependencies: ["lc25"]),
+        .testTarget(name: "lc30Test", dependencies: ["lc30"]),
     ]
 )
