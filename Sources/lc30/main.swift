@@ -8,34 +8,34 @@
 import Foundation
 // sliding window algo
 // - still not fast enough, maybe use Array<UInt8> to represent strings
+// array<UInt8> works, but how bout [Character]?
 
 public class Solution {
-    var s = ""
+    var s = [UInt8]()
     
     public init(){}
     
     public func findSubstring(_ s: String, _ tempWords: [String]) -> [Int] {
-        self.s = s
+        self.s = s.compactMap { $0.asciiValue }
         let wcount = tempWords.count
         let wlen = tempWords[0].count
-        var wcounts: [String: Int] = [:]
+        var wcounts: [[UInt8]: Int] = [:]
         for w in tempWords {
-            if wcounts[w] == nil {
-                wcounts[w] = 1
+            let cword = w.compactMap { $0.asciiValue }
+            if wcounts[cword] == nil {
+                wcounts[cword] = 1
             } else {
-                wcounts[w]! += 1
+                wcounts[cword]! += 1
             }
         }
         
         var ans = [Int]()
-        ans.reserveCapacity(5000)
         let permLen = wcount * wlen
         for parity in 0..<wlen {
             // [start..end)
-            var wused = [String: Int]()
+            var wused = [[UInt8]: Int]()
             var start = parity
             var end = start + permLen
-            print("range: ", start, end)
             // check if first window out of bounds
             guard end <= s.count else { break }
             
@@ -86,9 +86,7 @@ public class Solution {
         return ans
     }
     // return substring [a, b) of s
-    func substr(_ a: Int, _ b: Int) -> String {
-        let left = s.index(s.startIndex, offsetBy: a)
-        let right = s.index(s.startIndex, offsetBy: b)
-        return String(s[left ..< right])
+    func substr(_ a: Int, _ b: Int) -> [UInt8] {
+        return Array(s[a..<b])
     }
 }
