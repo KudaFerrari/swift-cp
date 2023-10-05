@@ -7,8 +7,11 @@
 
 import Foundation
 
-class AsahiOcean_Solution {
-    func findSubstring(_ s: String, _ words: [String]) -> [Int] {
+public class AsahiOcean_Solution {
+    
+    public init(){}
+    
+    public func findSubstring(_ s: String, _ words: [String]) -> [Int] {
         guard !(s.isEmpty) || !(words.isEmpty) else { return [] }
         
         let lenS = s.count, chars = Array(s)

@@ -25,11 +25,48 @@ final class LC30Test: XCTestCase {
         }
     }
     
+    func testCharacter(){
+        let solution = CharacterSolution()
+        for tc in testCases {
+            let resultSet: Set<Int> = Set(solution.findSubstring(tc.0, tc.1))
+            let expected: Set<Int> = Set(tc.2)
+            XCTAssertEqual(resultSet, expected)
+        }
+    }
+    
+    func testAsahiOcean(){
+        let solution = AsahiOcean_Solution()
+        for tc in testCases {
+            let resultSet: Set<Int> = Set(solution.findSubstring(tc.0, tc.1))
+            let expected: Set<Int> = Set(tc.2)
+            XCTAssertEqual(resultSet, expected)
+        }
+    }
+    
+    // MARK: measure
+    // slightly
     func testMeasureAscii(){
         let solution = Solution()
         let tc = testCases.last!
         measure {
-            solution.findSubstring(tc.0, tc.1)
+            let _ = solution.findSubstring(tc.0, tc.1)
+        }
+    }
+    
+    // slightly slower than Ascii approach within 60ms on lc
+    func testMeasureCharacter(){
+        let solution = CharacterSolution()
+        let tc = testCases.last!
+        measure {
+            let _ = solution.findSubstring(tc.0, tc.1)
+        }
+    }
+    
+    func testMeasureAsahiOcean(){
+        let solution = AsahiOcean_Solution()
+        let tc = testCases.last!
+        measure {
+            let _ = solution.findSubstring(tc.0, tc.1)
         }
     }
 }
